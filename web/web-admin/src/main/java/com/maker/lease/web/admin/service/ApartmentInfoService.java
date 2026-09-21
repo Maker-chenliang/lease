@@ -8,6 +8,7 @@ import com.maker.lease.web.admin.vo.apartment.ApartmentSubmitVo;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.apache.ibatis.annotations.Param;
 
 /**
 * @author liubo
@@ -15,5 +16,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 * @createDate 2023-07-24 15:48:00
 */
 public interface ApartmentInfoService extends IService<ApartmentInfo> {
+
+    IPage<ApartmentItemVo> pageItem(IPage<ApartmentItemVo> iPage, ApartmentQueryVo queryVo);
 
 }

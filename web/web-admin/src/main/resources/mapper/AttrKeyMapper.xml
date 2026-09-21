@@ -3,5 +3,33 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.maker.lease.web.admin.mapper.AttrKeyMapper">
+    <resultMap id="AttrKeyVoMap" type="com.maker.lease.web.admin.vo.attr.AttrKeyVo" autoMapping="true">
+        <id property="id" column="id"/>
+<!--        集合字段使用collection标签声明，第二个填实体类中的字段，第3个填集合中的元素类型-->
+        <collection property="attrValueList" ofType="com.maker.lease.model.entity.AttrValue">
+            <id property="id" column="value_id"/>
+            <result property="name" column="value_name"/>
+            <result property="attrKeyId" column="value_attr_key_id"/>
+            <result property="createTime" column="value_create_time"/>
+            <result property="updateTime" column="value_update_time"/>
+            <result property="isDeleted" column="value_is_deleted"/>
+        </collection>
+    </resultMap>
+    <select id="listAttrInfo" resultMap="AttrKeyVoMap">
+        select ak.id,
+               ak.name,
+               ak.create_time,
+               ak.update_time,
+               ak.is_deleted,
+               av.id          as value_id,
+               av.name        as value_name,
+               av.attr_key_id as value_attr_key_id,
+               av.create_time as value_create_time,
+               av.update_time as value_update_time
+        from lease.attr_key ak
+                 left join lease.attr_value av
+                           on ak.id = av.attr_key_id and av.is_deleted = 0
+        where ak.is_deleted = 0
 
+    </select>
 </mapper>

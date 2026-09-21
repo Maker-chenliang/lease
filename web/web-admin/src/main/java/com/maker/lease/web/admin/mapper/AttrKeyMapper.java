@@ -2,6 +2,9 @@ package com.maker.lease.web.admin.mapper;
 
 import com.maker.lease.model.entity.AttrKey;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.maker.lease.web.admin.vo.attr.AttrKeyVo;
+
+import java.util.List;
 
 /**
  * @author liubo
@@ -10,7 +13,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @Entity com.maker.lease.model.AttrKey
  */
 public interface AttrKeyMapper extends BaseMapper<AttrKey> {
-
+    List<AttrKeyVo> listAttrInfo();
 }
 
 

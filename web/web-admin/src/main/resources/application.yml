@@ -1,6 +1,10 @@
 server:
   port: 8080
 spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB # 单个文件上传大小上限，默认 1MB
+      max-request-size: 100MB # 整个 multipart 请求大小上限，默认 10MB
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:mysql://192.168.176.128:3306/lease?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2b8
@@ -19,3 +23,13 @@ spring:
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+servlet:
+  multipart:
+    max-file-size: 10MB      # 单个文件上限
+    max-request-size: 100MB  # 整个请求上限（含所有 part）
+minio:
+  endpoint: http://192.168.176.128:9000
+  access-key: minioadmin
+  secret-key: minioadmin
+  bucket-name: lease
+  region: cn-north-1

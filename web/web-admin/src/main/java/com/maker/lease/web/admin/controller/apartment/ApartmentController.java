@@ -1,9 +1,11 @@
 package com.maker.lease.web.admin.controller.apartment;
 
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.maker.lease.common.result.Result;
 import com.maker.lease.model.entity.ApartmentInfo;
 import com.maker.lease.model.enums.ReleaseStatus;
+import com.maker.lease.web.admin.service.ApartmentInfoService;
 import com.maker.lease.web.admin.vo.apartment.ApartmentDetailVo;
 import com.maker.lease.web.admin.vo.apartment.ApartmentItemVo;
 import com.maker.lease.web.admin.vo.apartment.ApartmentQueryVo;
@@ -11,6 +13,7 @@ import com.maker.lease.web.admin.vo.apartment.ApartmentSubmitVo;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +23,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin/apartment")
 public class ApartmentController {
-
+    @Autowired
+    private ApartmentInfoService apartmentInfoService;
     @Operation(summary = "保存或更新公寓信息")
     @PostMapping("saveOrUpdate")
     public Result saveOrUpdate(@RequestBody ApartmentSubmitVo apartmentSubmitVo) {
@@ -30,7 +34,9 @@ public class ApartmentController {
     @Operation(summary = "根据条件分页查询公寓列表")
     @GetMapping("pageItem")
     public Result<IPage<ApartmentItemVo>> pageItem(@RequestParam long current, @RequestParam long size, ApartmentQueryVo queryVo) {
-        return Result.ok();
+        IPage<ApartmentItemVo> iPage=new Page<>(current,size);
+        IPage<ApartmentItemVo> apartmentItemVoIPage = apartmentInfoService.pageItem(iPage, queryVo);
+        return Result.ok(apartmentItemVoIPage);
     }
 
     @Operation(summary = "根据ID获取公寓详细信息")
