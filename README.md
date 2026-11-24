@@ -65,7 +65,7 @@ lease
 依赖环境：JDK 21、MySQL、Redis、MinIO、阿里云短信账号（可选）。
 
 ```bash
-git clone https://github.com/<你的用户名>/lease.git
+git clone https://github.com/Maker-chenliang/lease.git
 ```
 
 1. 建库 `lease` 并导入表结构；
@@ -77,4 +77,4 @@ git clone https://github.com/<你的用户名>/lease.git
 
 - 项目为学习/实战向的完整后端实现，前端不在本仓库内；
 - 数据库连接指向内网虚拟机 IP，本地运行请按需修改。
-- 目前扔在不断改进和完善。
+- 目前扔在不断改进和完善，后续会加入agent。
