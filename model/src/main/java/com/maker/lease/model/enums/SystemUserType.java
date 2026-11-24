@@ -6,7 +6,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum SystemUserType implements BaseEnum {
 
     ADMIN(0, "管理员"),
-    COMMON(1, "普通用户");
+    COMMON(1, "普通用户"),
+    SUPER_ADMIN(3, "超级管理员");
 
     @EnumValue
     @JsonValue

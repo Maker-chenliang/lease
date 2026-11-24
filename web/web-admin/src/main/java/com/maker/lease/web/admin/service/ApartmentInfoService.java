@@ -19,4 +19,9 @@ public interface ApartmentInfoService extends IService<ApartmentInfo> {
 
     IPage<ApartmentItemVo> pageItem(IPage<ApartmentItemVo> iPage, ApartmentQueryVo queryVo);
 
+    void saveOrUpdateApartment(ApartmentSubmitVo apartmentSubmitVo);
+
+    ApartmentDetailVo getDetailById(Long id);
+
+    void removeApartmentById(Long id);
 }

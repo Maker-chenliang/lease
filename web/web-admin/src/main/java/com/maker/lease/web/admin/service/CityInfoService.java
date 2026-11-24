@@ -1,7 +1,10 @@
 package com.maker.lease.web.admin.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.maker.lease.model.entity.CityInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
 * @author liubo
@@ -10,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface CityInfoService extends IService<CityInfo> {
 
+    List<CityInfo> listCity(Long provinceId);
 }

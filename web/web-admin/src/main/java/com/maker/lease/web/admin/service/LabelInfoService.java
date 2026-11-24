@@ -1,7 +1,10 @@
 package com.maker.lease.web.admin.service;
 
 import com.maker.lease.model.entity.LabelInfo;
+import com.maker.lease.model.enums.ItemType;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
 * @author liubo
@@ -10,4 +13,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface LabelInfoService extends IService<LabelInfo> {
 
+    List<LabelInfo> selectListByRoomId(Long id);
+
+    List<LabelInfo> listLabel(ItemType type);
+
+    void saveOrUpdateLabel(LabelInfo labelInfo);
+
+    void removeLabelById(Long id);
 }

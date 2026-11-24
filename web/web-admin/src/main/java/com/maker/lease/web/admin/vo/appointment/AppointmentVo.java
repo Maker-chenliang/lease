@@ -12,4 +12,7 @@ public class AppointmentVo extends ViewAppointment {
     @Schema(description = "预约公寓信息")
     private ApartmentInfo apartmentInfo;
 
+    @Schema(description = "预约的房间号")
+    private String roomNumber;
+
 }

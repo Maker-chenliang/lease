@@ -1,12 +1,15 @@
 package com.maker.lease.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.maker.lease.model.enums.AppointmentStatus;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.maker.lease.model.enums.AppointmentStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.sql.Time;
 import java.util.Date;
 
 @Schema(description = "预约看房信息表")
@@ -32,8 +35,13 @@ public class ViewAppointment extends BaseEntity {
     @TableField(value = "apartment_id")
     private Long apartmentId;
 
+    @Schema(description = "预约房间id")
+    @TableField(value = "room_id")
+    private Long roomId;
+
     @Schema(description = "预约时间")
     @TableField(value = "appointment_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date appointmentTime;
 
     @Schema(description = "备注信息")

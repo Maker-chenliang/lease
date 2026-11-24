@@ -20,21 +20,21 @@ public class LeaseTermController {
     @GetMapping("list")
     @Operation(summary = "查询全部租期列表")
     public Result<List<LeaseTerm>> listLeaseTerm() {
-        List<LeaseTerm> list = service.list();
+        List<LeaseTerm> list = service.listLeaseTerm();
         return Result.ok(list);
     }
 
     @PostMapping("saveOrUpdate")
     @Operation(summary = "保存或更新租期信息")
     public Result saveOrUpdate(@RequestBody LeaseTerm leaseTerm) {
-        service.saveOrUpdate(leaseTerm);
+        service.saveOrUpdateLeaseTerm(leaseTerm);
         return Result.ok();
     }
 
     @DeleteMapping("deleteById")
     @Operation(summary = "根据ID删除租期")
     public Result deleteLeaseTermById(@RequestParam Long id) {
-        service.removeById(id);
+        service.removeLeaseTermById(id);
         return Result.ok();
     }
 }

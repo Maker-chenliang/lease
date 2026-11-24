@@ -3,6 +3,8 @@ package com.maker.lease.web.admin.service;
 import com.maker.lease.model.entity.LeaseTerm;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
 * @author liubo
 * @description 针对表【lease_term(租期)】的数据库操作Service
@@ -10,4 +12,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface LeaseTermService extends IService<LeaseTerm> {
 
+    List<LeaseTerm> selectListByroomId(Long id);
+
+    List<LeaseTerm> listLeaseTerm();
+
+    void saveOrUpdateLeaseTerm(LeaseTerm leaseTerm);
+
+    void removeLeaseTermById(Long id);
 }

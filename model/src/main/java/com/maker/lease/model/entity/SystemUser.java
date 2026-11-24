@@ -6,22 +6,22 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Schema(description = "员工信息")
 @TableName(value = "system_user")
 @Data
 public class SystemUser extends BaseEntity {
-
-
     private static final long serialVersionUID = 1L;
 
+    @Pattern(regexp = "^[A-Za-z0-9_]{3,15}$", message = "用户名只能是3-15位字母、数字或下划线")// 约束
     @Schema(description = "用户名")
     @TableField(value = "username")
     private String username;
 
     @Schema(description = "密码")
-    @TableField(value = "password")
+    @TableField(value = "password" ,select = false)
     private String password;
 
     @Schema(description = "姓名")

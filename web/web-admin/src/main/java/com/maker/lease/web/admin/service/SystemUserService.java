@@ -1,5 +1,6 @@
 package com.maker.lease.web.admin.service;
 
+import com.maker.lease.common.result.Result;
 import com.maker.lease.model.entity.SystemUser;
 import com.maker.lease.web.admin.vo.system.user.SystemUserItemVo;
 import com.maker.lease.web.admin.vo.system.user.SystemUserQueryVo;
@@ -13,4 +14,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface SystemUserService extends IService<SystemUser> {
 
+    IPage<SystemUserItemVo> pageSystemUserByQuery(IPage<SystemUserItemVo> page, SystemUserQueryVo queryVo,Boolean excludeAdmin);
+
+
+
+    SystemUserItemVo getSystemUserById(Long id);
+
+    void checkTarget(Long id);
 }

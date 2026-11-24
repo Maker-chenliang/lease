@@ -30,6 +30,7 @@
                  left join lease.attr_value av
                            on ak.id = av.attr_key_id and av.is_deleted = 0
         where ak.is_deleted = 0
+        order by ak.id, av.id
 
     </select>
 </mapper>

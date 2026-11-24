@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maker.lease.web.admin.mapper.OperateLogMapper">
+
+    <resultMap id="BaseResultMap" type="com.maker.lease.model.entity.OperateLog">
+            <id property="id" column="id" />
+            <result property="userId" column="user_id" />
+            <result property="username" column="username" />
+            <result property="operateTime" column="operate_time" />
+            <result property="className" column="class_name" />
+            <result property="methodName" column="method_name" />
+            <result property="methodParams" column="method_params" />
+            <result property="returnValue" column="return_value" />
+            <result property="resultCode" column="result_code" />
+            <result property="errorMsg" column="error_msg" />
+            <result property="costTime" column="cost_time" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,user_id,username,operate_time,class_name,method_name,
+        method_params,return_value,result_code,error_msg,cost_time
+    </sql>
+</mapper>

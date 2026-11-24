@@ -23,6 +23,7 @@
         from lease.fee_key k
                  left join lease.fee_value fv on k.id = fv.fee_key_id and fv.is_deleted = 0
         where k.is_deleted = 0
+        order by k.id, fv.id
 
     </select>
 </mapper>

@@ -2,5 +2,6 @@
 <project version="4">
   <component name="DataSourcePerFileMappings">
     <file url="file://$PROJECT_DIR$/../../BaiduNetdiskDownload/2.资料/1.数据库初始化脚本/lease.sql" value="f2d6e4cf-11f2-4bf4-b371-d1e539ba6f2a" />
+    <file url="file://$PROJECT_DIR$/web/web-admin/src/main/resources/mapper/FeeValueMapper.xml" value="f2d6e4cf-11f2-4bf4-b371-d1e539ba6f2a" />
   </component>
 </project>

@@ -2,6 +2,10 @@ package com.maker.lease.web.admin.service;
 
 import com.maker.lease.model.entity.GraphInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.maker.lease.model.enums.ItemType;
+import com.maker.lease.web.admin.vo.graph.GraphVo;
+
+import java.util.List;
 
 /**
 * @author liubo
@@ -10,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface GraphInfoService extends IService<GraphInfo> {
 
+    List<GraphVo> selectListByItemTypeAndId(ItemType itemType, Long id);
 }

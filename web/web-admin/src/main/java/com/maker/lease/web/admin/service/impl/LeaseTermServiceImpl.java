@@ -4,7 +4,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.maker.lease.model.entity.LeaseTerm;
 import com.maker.lease.web.admin.service.LeaseTermService;
 import com.maker.lease.web.admin.mapper.LeaseTermMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
 * @author liubo
@@ -14,7 +19,30 @@ import org.springframework.stereotype.Service;
 @Service
 public class LeaseTermServiceImpl extends ServiceImpl<LeaseTermMapper, LeaseTerm>
     implements LeaseTermService{
+    @Autowired
+    private LeaseTermMapper leaseTermMapper;
+    @Override
+    public List<LeaseTerm> selectListByroomId(Long id) {
+        return leaseTermMapper.selectListByRoomId(id);
+    }
 
+    @Cacheable(cacheNames = "admin:term", key = "'all'")
+    @Override
+    public List<LeaseTerm> listLeaseTerm() {
+        return this.list();
+    }
+
+    @CacheEvict(cacheNames = "admin:term", key = "'all'")
+    @Override
+    public void saveOrUpdateLeaseTerm(LeaseTerm leaseTerm) {
+        this.saveOrUpdate(leaseTerm);
+    }
+
+    @CacheEvict(cacheNames = "admin:term", key = "'all'")
+    @Override
+    public void removeLeaseTermById(Long id) {
+        this.removeById(id);
+    }
 }
 
 

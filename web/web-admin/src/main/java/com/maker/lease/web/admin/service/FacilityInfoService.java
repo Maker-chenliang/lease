@@ -1,7 +1,10 @@
 package com.maker.lease.web.admin.service;
 
 import com.maker.lease.model.entity.FacilityInfo;
+import com.maker.lease.model.enums.ItemType;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
 * @author liubo
@@ -10,4 +13,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface FacilityInfoService extends IService<FacilityInfo> {
 
+    List<FacilityInfo> selectListByRoomId(Long id);
+
+    List<FacilityInfo> listFacility(ItemType type);
+
+    void saveOrUpdateFacility(FacilityInfo facilityInfo);
+
+    void removeFacilityById(Long id);
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maker.lease.web.app.mapper.LabelInfoMapper">
+
+    <select id="getRoomLabelList" resultType="com.maker.lease.model.entity.LabelInfo">
+        select id, type, name
+        from lease.label_info
+        where is_deleted = 0
+          and type = 2
+          and id in (select label_id
+                     from lease.room_label
+                     where is_deleted = 0
+                       and room_id = #{id})
+    </select>
+    <select id="getApartmentLabelList" resultType="com.maker.lease.model.entity.LabelInfo">
+        select id, type, name
+        from lease.label_info
+        where is_deleted = 0
+          and type = 1
+          and id in (select label_id
+                     from lease.apartment_label
+                     where is_deleted = 0
+                       and apartment_id = #{id})
+    </select>
+</mapper>

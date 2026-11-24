@@ -11,6 +11,7 @@ import com.maker.lease.web.admin.vo.attr.AttrKeyVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,6 +48,7 @@ public class AttrController {
     }
 
     @Operation(summary = "根据id删除属性名称")
+    @Transactional(rollbackFor = Exception.class)
     @DeleteMapping("key/deleteById")
     public Result removeAttrKeyById(@RequestParam Long attrKeyId) {
         attrKeyService.removeById(attrKeyId);

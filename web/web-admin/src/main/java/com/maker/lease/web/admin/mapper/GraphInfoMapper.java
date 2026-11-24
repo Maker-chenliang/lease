@@ -2,6 +2,10 @@ package com.maker.lease.web.admin.mapper;
 
 import com.maker.lease.model.entity.GraphInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.maker.lease.model.enums.ItemType;
+import com.maker.lease.web.admin.vo.graph.GraphVo;
+
+import java.util.List;
 
 /**
  * @author liubo
@@ -10,6 +14,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @Entity com.maker.lease.model.GraphInfo
  */
 public interface GraphInfoMapper extends BaseMapper<GraphInfo> {
+
+    List<GraphVo> selectListByItemTypeAndId(ItemType itemType, long itemId);
 
 }
 

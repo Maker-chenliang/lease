@@ -1,7 +1,10 @@
 package com.maker.lease.web.admin.mapper;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.maker.lease.model.entity.SystemUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.maker.lease.web.admin.vo.system.user.SystemUserItemVo;
+import com.maker.lease.web.admin.vo.system.user.SystemUserQueryVo;
 
 /**
  * @author liubo
@@ -11,6 +14,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface SystemUserMapper extends BaseMapper<SystemUser> {
 
+    IPage<SystemUserItemVo> pageSystemUserByQuery(IPage<SystemUserItemVo> page, SystemUserQueryVo queryVo,Boolean excludeAdmin);
 }
 
 

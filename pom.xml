@@ -35,7 +35,7 @@
         <easycaptcha.version>1.6.2</easycaptcha.version>
         <minio.version>8.2.0</minio.version>
         <knife4j.version>4.1.0</knife4j.version>
-        <aliyun.sms.version>2.0.23</aliyun.sms.version>
+        <aliyun.sms.version>2.0.0</aliyun.sms.version>
     </properties>
 
     <!--配置dependencyManagement统一管理依赖版本-->
@@ -93,11 +93,11 @@
                 <version>${minio.version}</version>
             </dependency>
 
-            <!--阿里云短信客户端，用于发送短信验证码-->
-            <!--官方文档：https://help.aliyun.com/document_detail/215759.html?spm=a2c4g.215759.0.0.49f32807f4Yc0y -->
+            <!--阿里云号码认证服务客户端，用于发送短信验证码-->
+            <!--官方文档：https://api.aliyun.com/document/Dypnsapi/2017-05-25/SendSmsVerifyCode -->
             <dependency>
                 <groupId>com.aliyun</groupId>
-                <artifactId>dysmsapi20170525</artifactId>
+                <artifactId>alibabacloud-dypnsapi20170525</artifactId>
                 <version>${aliyun.sms.version}</version>
             </dependency>
 <!--            注意-->

@@ -28,6 +28,7 @@ public class BaseEntity implements Serializable {
     @Schema(description = "逻辑删除")
     @TableField("is_deleted")
     @TableLogic//逻辑删除，1删除，0没删除
+    @JsonIgnore
     private Byte isDeleted;
 
 }

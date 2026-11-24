@@ -1,8 +1,6 @@
 package com.maker.lease.web.admin.controller.apartment;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.maker.lease.common.result.Result;
 import com.maker.lease.model.entity.LabelInfo;
 import com.maker.lease.model.enums.ItemType;
@@ -23,23 +21,21 @@ public class LabelController {
     @Operation(summary = "（根据类型）查询标签列表")
     @GetMapping("list")
     public Result<List<LabelInfo>> labelList(@RequestParam(required = false) ItemType type) {
-        LambdaQueryWrapper<LabelInfo> labelInfoLambdaQueryWrapper = new LambdaQueryWrapper<>();
-        labelInfoLambdaQueryWrapper.eq(type!=null,LabelInfo::getType,type);
-        List<LabelInfo> list = service.list(labelInfoLambdaQueryWrapper);
+        List<LabelInfo> list = service.listLabel(type);
         return Result.ok(list);
     }
 
     @Operation(summary = "新增或修改标签信息")
     @PostMapping("saveOrUpdate")
     public Result saveOrUpdateLabel(@RequestBody LabelInfo labelInfo) {
-        service.saveOrUpdate(labelInfo);
+        service.saveOrUpdateLabel(labelInfo);
         return Result.ok();
     }
 
     @Operation(summary = "根据id删除标签信息")
     @DeleteMapping("deleteById")
     public Result deleteLabelById(@RequestParam Long id) {
-        service.removeById(id);
+        service.removeLabelById(id);
         return Result.ok();
     }
 }

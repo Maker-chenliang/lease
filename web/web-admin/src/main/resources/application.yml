@@ -12,24 +12,32 @@ spring:
     password: 123456
     hikari:
       connection-test-query: SELECT 1 # 自动检测连接
-      connection-timeout: 60000 #数据库连接超时时间,默认30秒
+      connection-timeout: 10000  #数据库连接超时时间,默认30秒
       idle-timeout: 500000 #空闲连接存活最大时间，默认600000（10分钟）
       max-lifetime: 540000 #此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
       maximum-pool-size: 12 #连接池最大连接数，默认是10
       minimum-idle: 10 #最小空闲连接数量
       pool-name: SPHHikariPool # 连接池名称
+  jackson:
+    time-zone: GMT+8
+  data:
+    redis:
+      host: 192.168.176.128
+      port: 6379
+      database: 0
 
 #用于打印框架生成的sql语句，便于调试
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-servlet:
-  multipart:
-    max-file-size: 10MB      # 单个文件上限
-    max-request-size: 100MB  # 整个请求上限（含所有 part）
+
 minio:
   endpoint: http://192.168.176.128:9000
   access-key: minioadmin
   secret-key: minioadmin
   bucket-name: lease
   region: cn-north-1
+
+springdoc:
+  default-flat-param-object: true
+

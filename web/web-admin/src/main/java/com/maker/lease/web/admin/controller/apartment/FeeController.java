@@ -11,6 +11,7 @@ import com.maker.lease.web.admin.vo.fee.FeeKeyVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,6 +48,7 @@ public class FeeController {
     }
 
     @Operation(summary = "根据id删除杂费名称")
+    @Transactional(rollbackFor = Exception.class)
     @DeleteMapping("key/deleteById")
     public Result deleteFeeKeyById(@RequestParam Long feeKeyId) {
         feeKeyService.removeById(feeKeyId);

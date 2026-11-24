@@ -15,4 +15,11 @@ import com.baomidou.mybatisplus.extension.service.IService;
 */
 public interface RoomInfoService extends IService<RoomInfo> {
 
+    void saveRoomSubmit(RoomSubmitVo roomSubmitVo);
+
+    IPage<RoomItemVo> pageRoomItemByQuery(IPage<RoomItemVo> page, RoomQueryVo queryVo);
+
+    RoomDetailVo getRoomDetailById(Long id);
+
+    void removeRoomById(Long id);
 }

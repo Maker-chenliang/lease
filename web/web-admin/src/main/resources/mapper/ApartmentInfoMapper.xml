@@ -7,24 +7,60 @@
 
     <select id="pageItem" resultType="com.maker.lease.web.admin.vo.apartment.ApartmentItemVo">
         select ai.id,
-        ai.name,
-        ai.introduction,
-        ai.district_id, ai.district_name,
-        ai.city_id,     ai.city_name,
-        ai.province_id, ai.province_name,
-        ai.address_detail,
-        ai.latitude, ai.longitude, ai.phone,
-        ai.is_release,
-        ai.create_time, ai.update_time, ai.is_deleted,
-        count(ri.id)                                  as total_room_count,
-        count(case when ri.is_release = 1 then 1 end) as free_room_count
-        from apartment_info ai
-        left join room_info ri
-        on ai.id = ri.apartment_id and ri.is_deleted = 0
-        where ai.is_deleted = 0
-        <if test="queryVo.provinceId != null">and ai.province_id = #{queryVo.provinceId}</if>
-        <if test="queryVo.cityId != null">and ai.city_id = #{queryVo.cityId}</if>
-        <if test="queryVo.districtId != null">and ai.district_id = #{queryVo.districtId}</if>
-        group by ai.id
+               ai.name,
+               ai.introduction,
+               ai.district_id,
+               ai.district_name,
+               ai.city_id,
+               ai.city_name,
+               ai.province_id,
+               ai.province_name,
+               ai.address_detail,
+               ai.latitude,
+               ai.longitude,
+               ai.phone,
+               ai.is_release,
+            ifnull(tc.cnt ,0) totalRoomCount, #定义：IFNULL(值, 替代值) —— 值不是 NULL 就返回它本身，是 NULL 就返回替代值。
+            ifnull(tc.cnt ,0)- ifnull(cc.cnt,0) freeRoomCount
+        from (select id,
+                     name,
+                     introduction,
+                     district_id,
+                     district_name,
+                     city_id,
+                     city_name,
+                     province_id,
+                     province_name,
+                     address_detail,
+                     latitude,
+                     longitude,
+                     phone,
+                     is_release
+              from lease.apartment_info
+                    <where>
+                        is_deleted = 0
+                        <if test="queryVo.provinceId != null">and province_id = #{queryVo.provinceId}</if>
+                        <if test="queryVo.cityId != null">and city_id = #{queryVo.cityId}</if>
+                        <if test="queryVo.districtId != null">and district_id = #{queryVo.districtId}</if>
+                    </where>
+              ) ai
+                 left join
+             (select apartment_id,
+                     count(*) cnt
+              from lease.room_info
+              where is_deleted = 0
+                and is_release = 1
+              group by apartment_id) tc
+             on ai.id = tc.apartment_id
+                 left join
+             (select apartment_id,
+                     count(*) cnt
+              from lease.lease_agreement
+              where is_deleted = 0
+                and status in (2, 5)
+              group by apartment_id) cc
+             on ai.id = cc.apartment_id
+
+
     </select>
 </mapper>

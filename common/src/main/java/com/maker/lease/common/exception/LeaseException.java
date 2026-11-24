@@ -1,0 +1,27 @@
+package com.maker.lease.common.exception;
+
+import com.maker.lease.common.result.ResultCodeEnum;
+import lombok.Data;
+//自定义异常
+@Data
+public class LeaseException extends RuntimeException{
+    private Integer code;
+    public LeaseException(Integer code ,String message){
+        super(message);
+        this.code=code;
+
+    }
+    public LeaseException(ResultCodeEnum resultCodeEnum){
+        super(resultCodeEnum.getMessage());
+        this.code= resultCodeEnum.getCode();
+
+    }
+    @Override
+    public String toString() {
+        return "LeaseException{" +
+                "code=" + code +
+                ", message=" + this.getMessage() +
+                '}';
+    }
+
+}

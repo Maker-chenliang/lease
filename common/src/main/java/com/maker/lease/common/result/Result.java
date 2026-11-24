@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * 全局统一返回结果类
  */
-@Data
+@Data //生成的 getter/setter 需要安装Lombok
 public class Result<T> {
 
     //返回码
@@ -14,7 +14,7 @@ public class Result<T> {
     //返回消息
     private String message;
 
-    //返回数据
+    //返回数据（字段类型）
     private T data;
 
     public Result() {
@@ -45,5 +45,12 @@ public class Result<T> {
 
     public static <T> Result<T> fail() {
         return build(null, ResultCodeEnum.FAIL);
+    }
+
+    public static <T> Result<T> fail(T body, Integer code, String message) {
+        Result<T> result = build(body);
+        result.setCode(code);
+        result.setMessage(message);
+        return result;
     }
 }
